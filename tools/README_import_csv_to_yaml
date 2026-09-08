@@ -1,0 +1,53 @@
+
+Primero conviene validar la petición:
+
+python3 tools/import_csv_to_yaml.py \
+  --csv peticiones/RFC123456.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC123456 \
+  --check-only
+
+Salida correcta:
+
+[OK] Sintaxis YAML leída correctamente
+[OK] Modelo YAML actual validado
+[OK] CSV validado: 4 petición/peticiones, ticket RFC123456
+[OK] Resultado en memoria validado
+
+Resumen de importación:
+  [UNCHANGED] User:krb_apigis topic bus_cpa (sin cambios)
+  [ADDED] User:krb_apigis consumerGroup k8s_validacions_pro (Describe|Read)
+  [ADDED] User:krb_apigis cluster kafka-cluster (Describe)
+  [ADDED] User:mmk_conf_pro transactionalId mm2- (Describe|Write)
+
+[OK] Check-only completado; no se ha modificado el YAML
+
+
+Importar y modificar env/pro.yaml:
+
+python3 tools/import_csv_to_yaml.py \
+  --csv peticiones/RFC123456.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC123456
+
+##
+
+El formato exacto de listas puede variar ligeramente al añadir nuevos elementos, pero el contenido y la estructura seguirán siendo equivalentes y se conservarán los comentarios existentes.
+Observaciones importantes sobre vuestro YAML
+
+Los principals distinguen mayúsculas y minúsculas. En el fichero aparecen User:krb_apigis, User:KRB_INP y otros formatos. El script no normaliza nombres para evitar asignar permisos a una
+ identidad distinta.
+
+El comodín '*' con patternType: literal se conserva exactamente. El importador no lo convierte en prefixed.
+permissions contiene varios elementos. Por ejemplo, User:mmk_conf_pro tiene un bloque para topics y consumer groups, otro para clusters y otro para transactional IDs. El script respeta este diseño.
+
+Una ACL ya existente se fusiona. Si un resource coincide por principal + resourceType + name + patternType, solamente se añaden las operaciones ausentes.
+No elimina ACLs. Este importador implementa altas y ampliaciones. Las bajas deberían gestionarse con otro flujo explícito para evitar eliminaciones accidentales.
+No ejecuta apply_acls.py. Primero modifica la fuente de verdad y genera el commit. Después de revisión y merge, vuestro procedimiento operativo puede ejecutar dry-run y posteriormente apply.
+
+Mejoras aplicadas
+Compatibilidad: el script se ha adaptado a la lista real de bloques permissions.
+Seguridad: incluye backup, validación previa y posterior, y rechazo de cambios Git pendientes.
+Idempotencia: repetir el mismo CSV no duplica recursos ni operaciones.
+Trazabilidad: el ticket queda en el CSV, la rama, el backup y el mensaje del commit.
+Control de producción: el script crea el commit, pero deja el push y el merge bajo revisión humana.

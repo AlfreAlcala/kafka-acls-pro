@@ -18,3 +18,409 @@ python3 tools/apply_acls.py env/pro.yaml --mode apply
 tools/export_current_acls.sh lxtmbkafdes01.xarxa.interna:9093 /etc/kafka/admin.properties | less
 
 kafka-acls --bootstrap-server lxtmbkafdes01.xarxa.interna:9093 --command-config /etc/kafka/admin.properties --add --allow-principal User:upe02423 --operation Read --topic bus_cpa
+
+
+############################################################################################################################
+
+Flujo ACLs-as-Code en Kafka Community
+
+Solicitud RFC
+    ↓
+CSV
+    ↓
+import_csv_to_yaml.py
+    ↓
+env/pro.yaml
+    ↓
+Git Commit
+    ↓
+Pull Request
+    ↓
+apply_acls.py --mode dry-run
+    ↓
+apply_acls.py --mode apply
+`
+
+Caso práctico
+Supongamos una petición:
+
+RFC123456
+
+Principal:
+User:upe02423
+
+Permisos:
+
+Topic:
+bus_cpa
+
+Consumer Group:
+k8s_bus_cpa_pro
+
+Operaciones:
+Describe
+Read
+
+Paso 1. Crear CSV
+
+vi peticiones/RFC123456.csv
+Contenido:
+ticket,principal,resourceType,name,patternType,operations
+RFC123456,User:upe02423,topic,bus_cpa,literal,Describe|Read
+RFC123456,User:upe02423,consumerGroup,k8s_bus_cpa_pro,literal,Describe|Read
+
+Paso 2. Verificar el YAML actual
+
+grep -i "User:upe02423" env/pro.yaml
+
+Si no devuelve nada:
+Principal nuevo
+Si devuelve resultados:
+Principal existente
+
+
+Paso 3. Validación previa (modo check)
+Ejecutar:
+python3 tools/import_csv_to_yaml.py \
+  --csv peticiones/RFC123456.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC123456 \
+  --check-only
+
+Salida esperada:
+[OK] Sintaxis YAML leída correctamente
+
+[OK] Modelo YAML actual validado
+
+[OK] CSV validado
+
+Resumen de importación:
+
+[ADDED]
+User:upe02423
+topic
+bus_cpa
+
+[ADDED]
+User:upe02423
+consumerGroup
+k8s_bus_cpa_pro
+
+[OK] Check-only completado
+
+No modifica nada todavía.
+
+Paso 4. Aplicar cambios al YAML
+Cuando la revisión sea correcta:
+python3 tools/import_csv_to_yaml.py \
+  --csv peticiones/RFC123456.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC123456
+
+Salida:
+
+[OK] Backup creado
+
+backup/pro_rfc123456_20260908_101500.yaml.bak
+
+[OK] YAML actualizado
+
+Paso 5. Verificar el cambio
+Buscar el principal:
+
+grep -A20 "User:upe02423" env/pro.yaml
+
+Resultado aproximado:
+- name: User:upe02423
+  permissions:
+
+    - topics:
+        - name: bus_cpa
+          patternType: literal
+          operations:
+            - Describe
+            - Read
+
+    - consumerGroups:
+        - name: k8s_bus_cpa_pro
+          patternType: literal
+          operations:
+            - Describe
+            - Read
+
+Paso 6. Crear commit automáticamente
+Si el repositorio Git ya está inicializado:
+python3 tools/import_csv_to_yaml.py \
+  --csv solicitudes/RFC123456.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC123456 \
+  --git-commit
+El script realizará:
+git switch -c acl/rfc123456
+
+git add env/pro.yaml
+
+git commit \
+"RFC123456 - Actualización ACLs Kafka"
+``
+Salida:
+
+[OK] Rama Git:
+
+acl/rfc123456
+
+[OK] Commit generado:
+
+2bc456a8fd98cfde...
+
+Paso 7. Revisar el commit
+Ver qué ha cambiado:
+git show
+o
+git diff main
+
+Paso 8. Publicar rama
+git push -u origin acl/rfc123456
+
+Paso 9. Una vez aprobado
+Validar ACLs Kafka:
+python3 tools/apply_acls.py \
+   env/pro.yaml \
+   --mode dry-run
+
+Revisar resultado.
+
+Paso 10. Aplicación en Kafka
+Si el dry-run es correcto:
+
+python3 tools/apply_acls.py \
+   env/pro.yaml \
+   --mode apply
+
+Ejemplo con permisos de Cluster
+Petición:
+RFC456789
+
+Principal:
+User:upe02423
+
+Necesita:
+IdempotentWrite
+sobre Cluster
+
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC456789,User:upe02423,cluster,kafka-cluster,,IdempotentWrite
+Ejecucion:
+python3 tools/import_csv_to_yaml.py \
+  --csv solicitudes/RFC456789.csv \
+  --yaml env/pro.yaml \
+  --ticket RFC456789
+Resultado:
+- clusters:
+    - name: kafka-cluster
+      operations:
+        - IdempotentWrite
+
+Ejemplo con Transactional IDs (MirrorMaker2)
+Muy útil para vuestro mmk_conf_pro.
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC777777,User:mmk_conf_pro,transactionalId,mm2-,prefixed,Describe|Write
+Resultado:
+- transactionalIds:
+    - name: mm2-
+      patternType: prefixed
+      operations:
+        - Describe
+        - Write
+Procedimiento recomendado para Producción
+Para env/pro.yaml en los nodos KRaft de Producción:
+1. Crear CSV RFC
+2. import_csv_to_yaml.py --check-only
+3. import_csv_to_yaml.py --git-commit
+4. Pull Request
+5. Revisión
+6. apply_acls.py --mode dry-run
+7. Backup ACL actual
+8. apply_acls.py --mode apply
+9. Export ACL final
+10. Evidencias
+
+PERMISOS CONSUMERSGROUPS
+Caso 1. Permiso de lectura sobre un Consumer Group específico
+
+Petición:
+RFC123456
+
+Principal:
+User:krb_telecom_ticket
+
+Consumer Group:
+k8s_validacions_pro
+
+Permisos:
+Describe
+Read
+
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC123456,User:krb_telecom_ticket,consumerGroup,k8s_validacions_pro,literal,Describe|Read
+
+Resultado en YAML:
+- name: User:krb_telecom_ticket
+  permissions:
+    - consumerGroups:
+        - name: k8s_validacions_pro
+          patternType: literal
+          operations:
+            - Describe
+            - Read
+
+Caso 2. Consumer Group por prefijo
+
+Muy habitual en Kafka para evitar gestionar ACLs grupo a grupo.
+Petición:
+RFC123457
+
+Principal:
+User:krb_apigis
+
+Todos los grupos:
+
+KAF-INP-GIS-*
+
+Permisos:
+Describe
+Read
+
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC123457,User:krb_apigis,consumerGroup,KAF-INP-GIS-,prefixed,Describe|Read
+
+Resultado:
+- consumerGroups:
+    - name: KAF-INP-GIS-
+      patternType: prefixed
+      operations:
+        - Describe
+        - Read
+
+Kafka ACL generada:
+kafka-acls \
+  --add \
+  --allow-principal User:krb_apigis \
+  --operation Read \
+  --group KAF-INP-GIS- \
+  --resource-pattern-type prefixed
+
+Caso 3. Varias ACLs para el mismo principal
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC123458,User:uagrca,consumerGroup,grca_des,literal,Describe|Read
+RFC123458,User:uagrca,consumerGroup,grca_int,literal,Describe|Read
+RFC123458,User:uagrca,consumerGroup,grca_pro,literal,Describe|Read
+RFC123458,User:uagrca,consumerGroup,grca_prod,literal,Describe|Read
+
+Resultado:
+- name: User:uagrca
+  permissions:
+    - consumerGroups:
+        - name: grca_des
+          patternType: literal
+          operations: [Describe, Read]
+
+        - name: grca_int
+          patternType: literal
+          operations: [Describe, Read]
+
+        - name: grca_pro
+          patternType: literal
+          operations: [Describe, Read]
+
+        - name: grca_prod
+          patternType: literal
+          operations: [Describe, Read]
+
+Caso 4. Alta completa consumidor Kafka
+Este es probablemente el ejemplo más útil para vuestras RFC.
+Petición:
+
+RFC123459
+
+Principal:
+User:upe02595
+
+Topic:
+metro_validacions
+
+Consumer Group:
+k8s_metro_validacions_pro
+
+Acceso:
+Consumidor
+
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC123459,User:upe02595,topic,metro_validacions,literal,Describe|Read
+RFC123459,User:upe02595,consumerGroup,k8s_metro_validacions_pro,literal,Describe|Read
+
+Resultado YAML:
+- name: User:upe02595
+
+  permissions:
+
+    - topics:
+        - name: metro_validacions
+          patternType: literal
+          operations:
+            - Describe
+            - Read
+
+    - consumerGroups:
+        - name: k8s_metro_validacions_pro
+          patternType: literal
+          operations:
+            - Describe
+
+Caso 5. Consumer Group wildcard (*)
+Veo que en vuestro YAML existen varios casos como:
+
+consumerGroups:
+  - name: '*'
+    patternType: literal
+    operations: [Describe, Read]
+
+Para generarlo:
+CSV:
+ticket,principal,resourceType,name,patternType,operations
+RFC123460,User:akhq,consumerGroup,*,literal,Describe|Read
+
+Resultado:
+
+consumerGroups:
+  - name: '*'
+    patternType: literal
+    operations:
+      - Describe
+      - Read
+
+Mi recomendación para Producción
+Dado vuestro inventario PROD KRaft y la migración Ranger → Confluent Community, simplificaría las RFC para que el técnico rellene algo así:
+
+Dado nuestro inventario PROD KRaft y la migración Ranger → Confluent Community, simplificaría las RFC para que el técnico rellene algo así:
+ticket,principal,tipo,topic,consumerGroup
+RFC123461,User:upe02595,consumer,metro_validacions,k8s_metro_validacions_pro
+Y que el script traduzca automáticamente:
+consumer
+    ↓
+
+Topic:
+Read
+Describe
+
+ConsumerGroup:
+Read
+Describe
+
+

@@ -1,0 +1,14 @@
+ticket,principal,resourceType,name,patternType,operations
+RFC123456,User:krb_apigis,topic,bus_cpa,literal,Describe|Read
+RFC123456,User:krb_apigis,consumerGroup,k8s_validacions_pro,literal,Describe|Read
+RFC123456,User:krb_apigis,cluster,kafka-cluster,,Describe
+RFC123456,User:mmk_conf_pro,transactionalId,mm2-,prefixed,Describe|Write
+
+Valores_permitidos:
+
+topic
+consumerGroup
+cluster
+transactionalId
+
+Para cluster, patternType se deja vacío porque vuestra estructura actual no lo utiliza:

@@ -1,2 +1,0 @@
- kinit -kt /opt/kafka/keytabs/kafka.keytab kafka/lxtmbkafdes01.xarxa.interna@XARXA.INTERNA
-

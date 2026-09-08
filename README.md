@@ -22,7 +22,7 @@ kafka-acls --bootstrap-server lxtmbkafdes01.xarxa.interna:9093 --command-config 
 
 ############################################################################################################################
 
-Flujo ACLs-as-Code en Kafka Community
+## Flujo ACLs-as-Code en Kafka Community
 
 Solicitud RFC
     ↓
@@ -41,7 +41,7 @@ apply_acls.py --mode dry-run
 apply_acls.py --mode apply
 `
 
-Caso práctico
+## Caso práctico
 Supongamos una petición:
 
 RFC123456
@@ -61,7 +61,7 @@ Operaciones:
 Describe
 Read
 
-Paso 1. Crear CSV
+## Paso 1. Crear CSV
 
 vi peticiones/RFC123456.csv
 Contenido:
@@ -69,7 +69,7 @@ ticket,principal,resourceType,name,patternType,operations
 RFC123456,User:upe02423,topic,bus_cpa,literal,Describe|Read
 RFC123456,User:upe02423,consumerGroup,k8s_bus_cpa_pro,literal,Describe|Read
 
-Paso 2. Verificar el YAML actual
+## Paso 2. Verificar el YAML actual
 
 grep -i "User:upe02423" env/pro.yaml
 
@@ -79,7 +79,7 @@ Si devuelve resultados:
 Principal existente
 
 
-Paso 3. Validación previa (modo check)
+## Paso 3. Validación previa (modo check)
 Ejecutar:
 python3 tools/import_csv_to_yaml.py \
   --csv peticiones/RFC123456.csv \
@@ -87,7 +87,7 @@ python3 tools/import_csv_to_yaml.py \
   --ticket RFC123456 \
   --check-only
 
-Salida esperada:
+# Salida esperada:
 [OK] Sintaxis YAML leída correctamente
 
 [OK] Modelo YAML actual validado
@@ -108,16 +108,16 @@ k8s_bus_cpa_pro
 
 [OK] Check-only completado
 
-No modifica nada todavía.
+# No modifica nada todavía.
 
-Paso 4. Aplicar cambios al YAML
+## Paso 4. Aplicar cambios al YAML
 Cuando la revisión sea correcta:
 python3 tools/import_csv_to_yaml.py \
   --csv peticiones/RFC123456.csv \
   --yaml env/pro.yaml \
   --ticket RFC123456
 
-Salida:
+# Salida:
 
 [OK] Backup creado
 
@@ -125,7 +125,7 @@ backup/pro_rfc123456_20260908_101500.yaml.bak
 
 [OK] YAML actualizado
 
-Paso 5. Verificar el cambio
+## Paso 5. Verificar el cambio
 Buscar el principal:
 
 grep -A20 "User:upe02423" env/pro.yaml
@@ -148,7 +148,7 @@ Resultado aproximado:
             - Describe
             - Read
 
-Paso 6. Crear commit automáticamente
+## Paso 6. Crear commit automáticamente
 Si el repositorio Git ya está inicializado:
 python3 tools/import_csv_to_yaml.py \
   --csv solicitudes/RFC123456.csv \
@@ -163,7 +163,7 @@ git add env/pro.yaml
 git commit \
 "RFC123456 - Actualización ACLs Kafka"
 ``
-Salida:
+# Salida:
 
 [OK] Rama Git:
 
@@ -179,10 +179,10 @@ git show
 o
 git diff main
 
-Paso 8. Publicar rama
+## Paso 8. Publicar rama
 git push -u origin acl/rfc123456
 
-Paso 9. Una vez aprobado
+## Paso 9. Una vez aprobado
 Validar ACLs Kafka:
 python3 tools/apply_acls.py \
    env/pro.yaml \
@@ -190,7 +190,7 @@ python3 tools/apply_acls.py \
 
 Revisar resultado.
 
-Paso 10. Aplicación en Kafka
+## Paso 10. Aplicación en Kafka
 Si el dry-run es correcto:
 
 python3 tools/apply_acls.py \
@@ -222,7 +222,7 @@ Resultado:
       operations:
         - IdempotentWrite
 
-Ejemplo con Transactional IDs (MirrorMaker2)
+## Ejemplo con Transactional IDs (MirrorMaker2)
 Muy útil para vuestro mmk_conf_pro.
 CSV:
 ticket,principal,resourceType,name,patternType,operations
@@ -234,7 +234,7 @@ Resultado:
       operations:
         - Describe
         - Write
-Procedimiento recomendado para Producción
+# Procedimiento recomendado para Producción
 Para env/pro.yaml en los nodos KRaft de Producción:
 1. Crear CSV RFC
 2. import_csv_to_yaml.py --check-only
@@ -247,8 +247,8 @@ Para env/pro.yaml en los nodos KRaft de Producción:
 9. Export ACL final
 10. Evidencias
 
-PERMISOS CONSUMERSGROUPS
-Caso 1. Permiso de lectura sobre un Consumer Group específico
+## PERMISOS CONSUMERSGROUPS
+# Caso 1. Permiso de lectura sobre un Consumer Group específico
 
 Petición:
 RFC123456
@@ -277,7 +277,7 @@ Resultado en YAML:
             - Describe
             - Read
 
-Caso 2. Consumer Group por prefijo
+# Caso 2. Consumer Group por prefijo
 
 Muy habitual en Kafka para evitar gestionar ACLs grupo a grupo.
 Petición:
@@ -314,7 +314,7 @@ kafka-acls \
   --group KAF-INP-GIS- \
   --resource-pattern-type prefixed
 
-Caso 3. Varias ACLs para el mismo principal
+## Caso 3. Varias ACLs para el mismo principal
 CSV:
 ticket,principal,resourceType,name,patternType,operations
 RFC123458,User:uagrca,consumerGroup,grca_des,literal,Describe|Read
@@ -322,7 +322,7 @@ RFC123458,User:uagrca,consumerGroup,grca_int,literal,Describe|Read
 RFC123458,User:uagrca,consumerGroup,grca_pro,literal,Describe|Read
 RFC123458,User:uagrca,consumerGroup,grca_prod,literal,Describe|Read
 
-Resultado:
+# Resultado:
 - name: User:uagrca
   permissions:
     - consumerGroups:
@@ -342,7 +342,7 @@ Resultado:
           patternType: literal
           operations: [Describe, Read]
 
-Caso 4. Alta completa consumidor Kafka
+## Caso 4. Alta completa consumidor Kafka
 Este es probablemente el ejemplo más útil para vuestras RFC.
 Petición:
 
@@ -383,7 +383,7 @@ Resultado YAML:
           operations:
             - Describe
 
-Caso 5. Consumer Group wildcard (*)
+## Caso 5. Consumer Group wildcard (*)
 Veo que en vuestro YAML existen varios casos como:
 
 consumerGroups:

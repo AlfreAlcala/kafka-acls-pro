@@ -423,4 +423,197 @@ ConsumerGroup:
 Read
 Describe
 
+### ROOLBACKS
+
+El rollback debe contemplar dos ## Escenarios distintos:
+- Error al importar/modificar el YAML.
+- Error después de aplicar ACLs en Kafka.
+La documentación interna que has preparado ya establece que Git es la fuente de verdad y aporta versionado, auditoría y rollback, mientras que Kafka no debe considerarse fuente de verdad.
+
+## Escenario 1. Error durante la importación del CSV
+Este es el caso más sencillo.
+El script que te propuse genera previamente:
+
+backup/
+└── pro_rfc123456_20260908_103000.yaml.bak
+
+Si detectas que el YAML generado es incorrecto:
+
+cp \
+backup/pro_rfc123456_20260908_103000.yaml.bak \
+env/pro.yaml
+
+Validar:
+
+python3 validate_yaml.py env/pro.yaml
+
+Revisar cambios:
+
+git diff
+
+## Escenario 2. Rollback antes del merge
+Si ya tienes commit pero todavía no has hecho merge en main:
+Ver rama:
+
+git branch
+
+Eliminar la rama:
+
+git switch main
+ 
+git branch -D acl/rfc123456
+
+o simplemente cerrar el PR.
+No afecta a Kafka porque todavía no se ha ejecutado:
+
+apply_acls.py
+
+## Escenario 3. Rollback después del merge
+Supongamos:
+
+Commit A
+↓
+Commit B (RFC123456)
+↓
+Problemas
+
+Identificar SHA:
+
+git log --oneline
+
+Ejemplo:
+
+87acde1 RFC123456 - ACL update
+45ef911 Commit anterior
+
+Crear reversión:
+
+git revert 87acde1
+
+Generará un nuevo commit:
+
+9bd1234 Revert RFC123456 - ACL update
+
+Después:
+
+git push
+
+y aplicar nuevamente:
+
+python3 tools/apply_acls.py \
+env/pro.yaml \
+--mode apply
+
+Este es el rollback más limpio porque mantiene la trazabilidad Git.
+## Escenario 4. Error tras aplicar ACLs en Kafka
+Éste es el importante para Producción.
+Por eso el procedimiento debe incluir siempre:
+Backup ACLs antes
+
+kafka-acls \
+--bootstrap-server lxtmbkafpro01.xarxa.interna:9093 \
+--command-config /etc/kafka/admin.properties \
+--list \
+> backup/acls_before.txt
+
+Backup YAML antes
+
+cp env/pro.yaml \
+backup/pro_antes_rfc123456.yaml
+
+Rollback rápido en Kafka
+Si una ACL nueva provoca:
+
+TOPIC_AUTHORIZATION_FAILED
+
+o
+
+GROUP_AUTHORIZATION_FAILED
+
+según las validaciones indicadas en vuestra documentación de migración,
+puedes volver al YAML anterior:
+
+cp \
+backup/pro_antes_rfc123456.yaml \
+env/pro.yaml
+
+y reaplicar:
+
+python3 tools/apply_acls.py \
+env/pro.yaml \
+--mode apply
+
+## Escenario 5. apply_acls.py sólo añade ACLs
+Hay un punto crítico.
+En tu documentación de implantación aparece:
+
+✅ Añade ACLs
+❌ No borra
+
+para el script de aplicación.
+Si vuestro apply_acls.py continúa funcionando así:
+
+--add solamente
+
+entonces:
+
+Git Rollback
+≠
+Kafka Rollback
+
+porque las ACLs anteriormente aplicadas seguirán existiendo.
+En ese caso necesitarás una capacidad adicional:
+
+apply_acls.py --mode reconcile
+
+o
+
+apply_acls.py --mode delete
+
+que compare:
+
+Kafka actual
+vs
+YAML actual
+
+y elimine ACLs sobrantes.
+Recomendación para PROD
+Yo documentaría un procedimiento de tres niveles:
+Nivel 1 (antes de tocar Kafka)
+
+git checkout -
+
+o restaurar backup YAML.
+Nivel 2 (después de merge)
+
+git revert <sha>
+
+Nivel 3 (después de aplicar ACLs)
+
+1. Restaurar YAML backup
+2. Reaplicar ACLs
+3. Verificar kafka-acls --list
+
+Mejora que añadiría a vuestro proyecto
+Implementar un script:
+
+rollback_acl_request.py
+
+Uso:
+
+python3 rollback_acl_request.py \
+--ticket RFC123456
+
+Automáticamente:
+
+1. Busca commit RFC123456
+2. Ejecuta git revert
+3. Regenera env/pro.yaml
+4. Lanza apply_acls.py
+5. Compara ACLs finales
+6. Genera informe rollback.log
+
+
+
+
 

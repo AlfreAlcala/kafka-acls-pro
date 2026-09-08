@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+import argparse, subprocess, sys
+from pathlib import Path
+import yaml
+
+OP_ALLOWED = {"Read","Write","Describe","Create","Delete","Alter","DescribeConfigs","AlterConfigs","ClusterAction","IdempotentWrite","All"}
+
+RESOURCE_FLAG = {
+  "topics": "--topic",
+  "consumerGroups": "--group",
+  "clusters": "--cluster",
+  "transactionalIds": "--transactional-id",
+  "delegationTokens": "--delegation-token",
+}
+
+PATTERN_FLAG = {
+  "literal": "literal",
+  "prefixed": "prefixed",
+  "wildcard": "match",
+}
+
+
+def run(cmd, dry):
+    print(" ".join(cmd))
+    if dry:
+        return 0
+    return subprocess.run(cmd).returncode
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("env_yaml", help="env/dev.yaml")
+    ap.add_argument("--mode", choices=["apply","dry-run"], default="dry-run")
+    args = ap.parse_args()
+
+    cfg = yaml.safe_load(Path(args.env_yaml).read_text())
+    cluster = cfg["cluster"]
+    bootstrap = cluster["bootstrap"]
+    command_cfg = cluster["command_config"]
+    dry = (args.mode != "apply") or bool(cluster.get("dry_run", False))
+
+    for p in cfg.get("principals", []):
+        principal = p["name"]
+        for perm in p.get("permissions", []):
+            for section, flag in RESOURCE_FLAG.items():
+                for entry in perm.get(section, []) or []:
+                    name = entry["name"]
+                    ptype = entry.get("patternType", "literal")
+                    ops = entry.get("operations", [])
+                    for op in ops:
+                        if op not in OP_ALLOWED:
+                            raise SystemExit(f"Operacion no soportada: {op}")
+                        cmd = [
+                          "kafka-acls",
+                          "--bootstrap-server", bootstrap,
+                          "--command-config", command_cfg,
+                          "--add",
+                          "--allow-principal", principal,
+                          "--operation", op,
+                          flag, name,
+                        ]
+                        # pattern
+                        if ptype != "literal":
+                            cmd += ["--resource-pattern-type", PATTERN_FLAG.get(ptype, "literal")]
+                        rc = run(cmd, dry)
+                        if rc != 0:
+                            raise SystemExit(rc)
+
+if __name__ == "__main__":
+    main()

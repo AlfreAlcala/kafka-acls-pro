@@ -1,0 +1,27 @@
+Cómo usarlo
+1) Solo lint (no modifica nada)
+Shellpython3 tools/lint_acls.py env/dev.yamlecho $?Show more lines
+
+0 = OK
+1 = solo WARN (recomendado revisar)
+2 = ERROR (no apliques)
+
+2) Lint “estricto” (dup case-insensitive = ERROR)
+Shellpython3 tools/lint_acls.py env/dev.yaml --strict-caseShow more lines
+3) Generar YAML “limpio” (merged) por stdout
+Shellpython3 tools/lint_acls.py env/dev.yaml --write-fixed > env/dev.fixed.yamlShow more lines
+
+Este “fixed” consolida operaciones repetidas y recursos duplicados dentro del mismo principal, reduciendo comandos redundantes.
+
+
+Qué problemas te va a detectar en tu caso típico
+
+Principals duplicados por case (WARN o ERROR) — útil porque Kafka compara strings y User es case-sensitive. [seguridad_kafka | PDF]
+Recursos repetidos como te pasó con cloudera.heartbeats (WARN y te propone consolidación)
+name: '*' con patternType: prefixed (WARN)
+Operaciones repetidas dentro de la misma lista (WARN + merged)
+
+
+Si quieres, en el siguiente paso te hago una versión “pro” del lint que también valide coherencia con identity_map.yaml (por ejemplo, que todos los destinos existen, o que no apuntas a principals en mayúsculas si ya decidiste minúsculas), siguiendo vuestro flujo de “resolver identidades” antes de aplicar ACLs. [Test Case Generator | SharePoint], [agent-mana...code block | Loop]
+ python3 tools/lint_acls.py env/dev.yaml
+ echo 0

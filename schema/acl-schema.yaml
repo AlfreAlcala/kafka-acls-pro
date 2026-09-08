@@ -1,0 +1,3 @@
+# (Opcional) Esquema conceptual para validar el YAML.
+# Si queréis validación automática, podéis usar yamale/pykwalify en CI.
+# Mantengo esto minimal por ahora.

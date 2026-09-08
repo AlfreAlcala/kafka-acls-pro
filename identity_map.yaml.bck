@@ -1,0 +1,22 @@
+users:
+  krb_mon: krb_mon
+  krb_apigis: krb_apigis
+  krb_inp: krb_inp
+  nifi-dev: nifi-dev
+  uadenodo_read: uadenodo_read
+groups:
+  kaf_inp: KRB_INP
+  big_admin: [upe02423, upe02595, bigdata_backup]  
+roles:
+  krb_apigis: KRB_APIGIS
+  kafka_apigis_pro_con: KRB_APIGIS
+  kaf_telecomandament_ticketing_r: KRB_TELECOM_TICKET
+  kafka_con_grca: uagrca
+  kafka_con_nifi-dev: nifi-dev
+  r_denodo_consumer: uaDenodo_read
+  r_poc_denodo_consumer: uaDenodo_read
+  r_inp: KRB_INP
+  r_inp_alive: KRB_INP
+  r_inp_config: KRB_INP
+  r_inp_logs: KRB_INP
+  r_inp_stream_logs: KRB_INP

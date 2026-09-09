@@ -301,41 +301,59 @@ Buscar el principal:
             patternType: prefixed
             operations: [Describe, Read]
 
-## Paso 6. Crear commit automáticamente
+## Paso 6. Crear commit automáticamente.
 Si el repositorio Git ya está inicializado:
 # python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --git-commit
 
-El script realizará:
-git switch -c acl/103097
+## El script realizará:
+# git switch -c acl/103097
 
-git add env/pro.yaml
+# git add env/pro.yaml
 
-git commit "RFC123456 - Actualización ACLs Kafka"
-``
+git commit "103097 - Actualización ACLs Kafka"
+
 # Salida:
 
-[OK] Rama Git:
+# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --git-commit
+[OK] Sintaxis YAML leída correctamente
+[OK] Modelo YAML actual validado
+[OK] CSV validado: 18 petición/peticiones, ticket 103097
+[OK] Resultado en memoria validado
 
-acl/rfc123456
+Resumen de importación:
+  [UNCHANGED] User:UT12453 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UT12453 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UT12453 consumerGroup networking_consumer (sin cambios)
+  [UNCHANGED] User:UT12881 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UT12881 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UT12881 consumerGroup networking_consumer (sin cambios)
+  [UNCHANGED] User:UT15038 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UT15038 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UT15038 consumerGroup networking_consumer (sin cambios)
+  [UNCHANGED] User:UM09446 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UM09446 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UM09446 consumerGroup networking_consumer (sin cambios)
+  [UNCHANGED] User:UM09524 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UM09524 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UM09524 consumerGroup networking_consumer (sin cambios)
+  [UNCHANGED] User:UT15839 topic t_networking_ (sin cambios)
+  [UNCHANGED] User:UT15839 consumerGroup dev_networking_consumer (sin cambios)
+  [UNCHANGED] User:UT15839 consumerGroup networking_consumer (sin cambios)
 
-[OK] Commit generado:
+[OK] Todas las ACL solicitadas ya existían; no se modifica el YAML ni se crea commit
 
-2bc456a8fd98cfde...
-
-Paso 7. Revisar el commit
+## Paso 7. Revisar el commit
 Ver qué ha cambiado:
 git show
 o
 git diff main
 
 ## Paso 8. Publicar rama
-git push -u origin acl/rfc123456
+git push -u origin acl/103097
 
 ## Paso 9. Una vez aprobado
-Validar ACLs Kafka:
-python3 tools/apply_acls.py \
-   env/pro.yaml \
-   --mode dry-run
+ Validar ACLs Kafka:
+# python3 tools/apply_acls.py env/pro.yaml --mode dry-run
 
 Revisar resultado.
 

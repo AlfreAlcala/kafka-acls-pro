@@ -105,7 +105,7 @@ principals:
         consumerGroups:
           - name: '*'
             patternType: literal
-            operations: [Describe, Read]                
+            operations: [Describe, Read]
 
   - name: User:krb_mon
     permissions:
@@ -219,7 +219,6 @@ principals:
           - name: '*'
             patternType: literal
             operations: [All]
-              
   - name: User:mmk_conf_pro
     permissions:
       - topics:
@@ -248,7 +247,7 @@ principals:
             patternType: prefixed
             operations: [Create, Write, Read, Describe, DescribeConfigs, AlterConfigs]
 
-          - name: '*' 
+          - name: '*'
             patternType: literal
             operations: [Create, Write, Read, Describe, DescribeConfigs, AlterConfigs]
 
@@ -307,19 +306,16 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, Read]
-      
   - name: User:KRB_EVENTLOG
     permissions:
       - topics:
           - name: t_eventlogs
             patternType: literal
             operations: [All]
-        
         consumerGroups:
           - name: '*'
             patternType: literal
             operations: [Describe, Read]
-    
 
   - name: User:UT17127
     permissions:
@@ -370,3 +366,81 @@ principals:
             patternType: literal
             operations: [All]
 
+  - name: User:UT12453
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT12881
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15038
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09446
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09524
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15839
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]

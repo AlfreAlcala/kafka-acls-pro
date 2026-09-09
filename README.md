@@ -61,17 +61,34 @@ Operaciones:
 Describe
 Read
 
-## Paso 1. Crear CSV
+## Paso 1. Crear CSV. Ejemplo que parte de petición en Redmine
 
-vi peticiones/RFC123456.csv
+vi peticiones/103097.csv
 Contenido:
+
 ticket,principal,resourceType,name,patternType,operations
-RFC123456,User:upe02423,topic,bus_cpa,literal,Describe|Read
-RFC123456,User:upe02423,consumerGroup,k8s_bus_cpa_pro,literal,Describe|Read
+103097,User:UT12453,topic,t_networking_,prefixed,Describe|Read
+103097,User:UT12453,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UT12453,consumerGroup,networking_consumer,prefixed,Describe|Read
+103097,User:UT12881,topic,t_networking_,prefixed,Describe|Read
+103097,User:UT12881,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UT12881,consumerGroup,networking_consumer,prefixed,Describe|Read
+103097,User:UT15038,topic,t_networking_,prefixed,Describe|Read
+103097,User:UT15038,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UT15038,consumerGroup,networking_consumer,prefixed,Describe|Read
+103097,User:UM09446,topic,t_networking_,prefixed,Describe|Read
+103097,User:UM09446,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UM09446,consumerGroup,networking_consumer,prefixed,Describe|Read
+103097,User:UM09524,topic,t_networking_,prefixed,Describe|Read
+103097,User:UM09524,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UM09524,consumerGroup,networking_consumer,prefixed,Describe|Read
+103097,User:UT15839,topic,t_networking_,prefixed,Describe|Read
+103097,User:UT15839,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
+103097,User:UT15839,consumerGroup,networking_consumer,prefixed,Describe|Read
 
 ## Paso 2. Verificar el YAML actual
 
-grep -i "User:upe02423" env/pro.yaml
+grep -i "User:UT12453" env/pro.yaml
 
 Si no devuelve nada:
 Principal nuevo
@@ -81,72 +98,208 @@ Principal existente
 
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
-python3 tools/import_csv_to_yaml.py \
-  --csv peticiones/RFC123456.csv \
-  --yaml env/pro.yaml \
-  --ticket RFC123456 \
-  --check-only
+
+# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --check-only
 
 # Salida esperada:
+
+ python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --check-only
 [OK] Sintaxis YAML leída correctamente
-
 [OK] Modelo YAML actual validado
-
-[OK] CSV validado
+[OK] CSV validado: 18 petición/peticiones, ticket 103097
+[OK] Resultado en memoria validado
 
 Resumen de importación:
+  [ADDED] User:UT12453 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT12453 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT12453 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT12881 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT12881 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT12881 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT15038 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT15038 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT15038 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UM09446 topic t_networking_ (Describe|Read)
+  [ADDED] User:UM09446 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UM09446 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UM09524 topic t_networking_ (Describe|Read)
+  [ADDED] User:UM09524 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UM09524 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT15839 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT15839 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT15839 consumerGroup networking_consumer (Describe|Read)
 
-[ADDED]
-User:upe02423
-topic
-bus_cpa
-
-[ADDED]
-User:upe02423
-consumerGroup
-k8s_bus_cpa_pro
-
-[OK] Check-only completado
-
-# No modifica nada todavía.
+[OK] Check-only completado; no se ha modificado el YAML
 
 ## Paso 4. Aplicar cambios al YAML
 Cuando la revisión sea correcta:
-python3 tools/import_csv_to_yaml.py \
-  --csv peticiones/RFC123456.csv \
-  --yaml env/pro.yaml \
-  --ticket RFC123456
+El proceso crea Backup, pero por fuera creamos otro, por si el script python fallara:
+
+# mkdir -p /opt/kafka_acl_backup/$(date +%Y%m%d_%H%M)
+# BACKUP_DIR=/opt/kafka_acl_backup/$(date +%Y%m%d_%H%M)
+# tools/export_current_acls.sh lxtmbkafpro01.xarxa.interna:9093 /etc/kafka/admin.properties > $BACKUP_DIR/acls_before.txt
+
+Y ya si, ejecutamos el script:
+
+# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097
 
 # Salida:
 
-[OK] Backup creado
+ [OK] Sintaxis YAML leída correctamente
+[OK] Modelo YAML actual validado
+[OK] CSV validado: 18 petición/peticiones, ticket 103097
+[OK] Resultado en memoria validado
 
-backup/pro_rfc123456_20260908_101500.yaml.bak
+Resumen de importación:
+  [ADDED] User:UT12453 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT12453 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT12453 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT12881 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT12881 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT12881 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT15038 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT15038 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT15038 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UM09446 topic t_networking_ (Describe|Read)
+  [ADDED] User:UM09446 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UM09446 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UM09524 topic t_networking_ (Describe|Read)
+  [ADDED] User:UM09524 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UM09524 consumerGroup networking_consumer (Describe|Read)
+  [ADDED] User:UT15839 topic t_networking_ (Describe|Read)
+  [ADDED] User:UT15839 consumerGroup dev_networking_consumer (Describe|Read)
+  [ADDED] User:UT15839 consumerGroup networking_consumer (Describe|Read)
 
-[OK] YAML actualizado
+[OK] Backup creado: /opt/kafka/backup/pro_103097_20260909_104654.yaml.bak
+[OK] YAML actualizado y validado: /root/kafka-acls/env/pro.yaml
 
 ## Paso 5. Verificar el cambio
 Buscar el principal:
 
-grep -A20 "User:upe02423" env/pro.yaml
-
-Resultado aproximado:
-- name: User:upe02423
-  permissions:
-
-    - topics:
-        - name: bus_cpa
-          patternType: literal
-          operations:
-            - Describe
-            - Read
-
-    - consumerGroups:
-        - name: k8s_bus_cpa_pro
-          patternType: literal
-          operations:
-            - Describe
-            - Read
+# grep -A20 "User:UT12453" env/pro.yaml
+  - name: User:UT12453
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT12881
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+# grep -A20 "User:UT12881" env/pro.yaml
+  - name: User:UT12881
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15038
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+# grep -A20 "User:UT15038" env/pro.yaml
+  - name: User:UT15038
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09446
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+# grep -A20 "User:UM09446" env/pro.yaml
+  - name: User:UM09446
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09524
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+# grep -A20 "User:UM09524" env/pro.yaml
+  - name: User:UM09524
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15839
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+# grep -A20 "User:UT15839" env/pro.yaml
+  - name: User:UT15839
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
 
 ## Paso 6. Crear commit automáticamente
 Si el repositorio Git ya está inicializado:

@@ -303,18 +303,14 @@ Buscar el principal:
 
 ## Paso 6. Crear commit automáticamente
 Si el repositorio Git ya está inicializado:
-python3 tools/import_csv_to_yaml.py \
-  --csv solicitudes/RFC123456.csv \
-  --yaml env/pro.yaml \
-  --ticket RFC123456 \
-  --git-commit
+# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --git-commit
+
 El script realizará:
-git switch -c acl/rfc123456
+git switch -c acl/103097
 
 git add env/pro.yaml
 
-git commit \
-"RFC123456 - Actualización ACLs Kafka"
+git commit "RFC123456 - Actualización ACLs Kafka"
 ``
 # Salida:
 

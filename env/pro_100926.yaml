@@ -294,6 +294,17 @@ principals:
           - name: t_eventlogs
             patternType: literal
             operations: [Describe, Read]
+          - name: t_networking_casb
+            patternType: literal
+            operations: [Describe, Read]
+
+      - consumerGroups:
+          - name: connect-splunk_des
+            patternType: literal
+            operations: [Describe, Read]
+          - name: connect-splunk_pro
+            patternType: literal
+            operations: [Describe, Read]
   - name: User:KRB_SYSLOG
     permissions:
       - topics:
@@ -442,4 +453,30 @@ principals:
             operations: [Describe, Read]
           - name: networking_consumer
             patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:KRB_TEST
+    permissions:
+      - topics:
+          - name: t_networking_casb
+            patternType: literal
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: connect-splunk_des
+            patternType: literal
+            operations: [Describe, Read]
+          - name: connect-splunk_pro
+            patternType: literal
+            operations: [Describe, Read]
+  - name: User:KRB_SPLUNK
+    permissions:
+      - topics:
+          - name: t_networking_casb
+            patternType: literal
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: connect-splunk_des
+            patternType: literal
+            operations: [Describe, Read]
+          - name: connect-splunk_pro
+            patternType: literal
             operations: [Describe, Read]

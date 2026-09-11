@@ -1,16 +1,16 @@
 # kafka-acls
 Repositorio oficial de ACLs Kafka Community (ACLs-as-Code).
 
-## Principios
+# Principios
 - Git es la única fuente de verdad.
 - Prohibido aplicar ACLs manuales sin PR.
 
-## Flujo
+# Flujo
 1) Edita `env/pro.yaml` (o pre/prod)
 2) Revisa el diff en PR
 3) Aplica con `tools/apply_acls.py`
 
-## Nota importante
+# Nota importante
 Kafka Community no soporta grupos LDAP. Las políticas Ranger se traducen a principals individuales.
 `identity_map.yaml` mapea *roles/grupos Ranger* -> *principals Kafka*.
 
@@ -19,37 +19,31 @@ tools/export_current_acls.sh lxtmbkafdes01.xarxa.interna:9093 /etc/kafka/admin.p
 
 kafka-acls --bootstrap-server lxtmbkafdes01.xarxa.interna:9093 --command-config /etc/kafka/admin.properties --add --allow-principal User:upe02423 --operation Read --topic bus_cpa
 
-############################################################################################################################
+# Flujo ACLs-as-Code en Kafka Community
 
-## Flujo ACLs-as-Code en Kafka Community
+Peticion → CSV → Commit → Push → Review → Deploy ACLs
 
-Commit → Push → Pull Request → Merge → git pull → dry-run → apply
-
-## Caso práctico utilizando patterns para aplicar a varios topics o consumergroups.
+# Caso práctico utilizando patterns para varios topics o consumergroups.
 Supongamos una petición:
 
 103097
 
-Principal:
+## Principals:
 Users:UT12453, UT12881, UM09446, UT15839 
 
-Permisos:
+## Permisos:
 
-Topic:
+## Topic:
 Topics con nombre t_networking_*
 
-Consumer Groups:
+## Consumer Groups:
 dev_networking_consumer*, networking_consumer*
 
-Operaciones:
-Describe
-Read
-
-## Paso 1. Crear CSV. Ejemplo que parte de petición en Redmine
+# Paso 1. Crear CSV. Ejemplo que parte de petición en Redmine
 Path en nodo lxtmbkafpro01: /root/kafka-acls
-# cd  /root/kafka-acls
-# git init
-# vi peticiones/103097.csv
+## cd  /root/kafka-acls
+## git init
+## vi peticiones/103097.csv
 
 ## Contenido:
 
@@ -85,9 +79,10 @@ Principal existente
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
 
-# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --check-only
+### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv /
+### --yaml env/pro.yaml --ticket 103097 --check-only
 
-# Salida esperada:
+## Salida esperada:
 
 [OK] Sintaxis YAML leída correctamente
 [OK] Modelo YAML actual validado
@@ -118,7 +113,7 @@ Resumen de importación:
 
 ## Paso 4. Aplicar cambios al YAML
 Cuando la revisión sea correcta:
-# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097
+### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097
 El proceso creara Backup del yaml en /opt/kafka/backup/
 
 # Salida:
@@ -154,7 +149,7 @@ Resumen de importación:
 ## Paso 5. Verificar el cambio
 Buscar el principal:
 
-# grep -A20 "User:UT12453" env/pro.yaml
+### grep -A20 "User:UT12453" env/pro.yaml
   - name: User:UT12453
     permissions:
       - topics:
@@ -176,7 +171,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-# grep -A20 "User:UT12881" env/pro.yaml
+### grep -A20 "User:UT12881" env/pro.yaml
   - name: User:UT12881
     permissions:
       - topics:
@@ -198,7 +193,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-# grep -A20 "User:UT15038" env/pro.yaml
+### grep -A20 "User:UT15038" env/pro.yaml
   - name: User:UT15038
     permissions:
       - topics:
@@ -220,7 +215,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-# grep -A20 "User:UM09446" env/pro.yaml
+### grep -A20 "User:UM09446" env/pro.yaml
   - name: User:UM09446
     permissions:
       - topics:
@@ -242,7 +237,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-# grep -A20 "User:UM09524" env/pro.yaml
+### grep -A20 "User:UM09524" env/pro.yaml
   - name: User:UM09524
     permissions:
       - topics:
@@ -264,7 +259,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-# grep -A20 "User:UT15839" env/pro.yaml
+### grep -A20 "User:UT15839" env/pro.yaml
   - name: User:UT15839
     permissions:
       - topics:
@@ -281,32 +276,34 @@ Buscar el principal:
 
 ## Paso 6. Crear commit automáticamente.
 Si el repositorio Git ya está inicializado, lo inicializamos en el paso 1:
-# python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --git-commit
+### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv / 
+### --yaml env/pro.yaml --ticket 103097 --git-commit
 
 ## El script realizará:
-# git switch -c acl/103097
-# git add .
-# git commit "103097 - Actualización ACLs Kafka"
+### git switch -c acl/103097
+### git add .
+### git commit "103097 - Actualización ACLs Kafka"
 
 ## Paso 7. Revisar el commit
 Ver qué ha cambiado:
-# git show
-o
-# git diff main
+### git show
+### o
+### git diff main
 
 ## Paso 8. Publicar rama
-# git push -u origin acl/103097
+### git push -u origin acl/103097
 
 ## Paso 9. Una vez aprobado
  Validar ACLs Kafka:
-# python3 tools/apply_acls.py env/pro.yaml --mode dry-run
+### python3 tools/apply_acls.py env/pro.yaml --mode dry-run
 
 Revisar resultado.
 
 ## Paso 10. Aplicación en Kafka
+
 Si el dry-run es correcto:
 
-# python3 tools/apply_acls.py env/pro.yaml --mode apply
+### python3 tools/apply_acls.py env/pro.yaml --mode apply
 
 ## Caso práctico utilizando literal para aplicar a topic o consumergroup.
 
@@ -348,9 +345,9 @@ Principal existente, nuestro caso.
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
 
-# python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --check-only
+### python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --check-only
 
-# Salida esperada:
+### Salida esperada:
 
 [OK] Sintaxis YAML leída correctamente
 [OK] Modelo YAML actual validado
@@ -374,16 +371,19 @@ Resumen de importación:
 Cuando la revisión sea correcta:
 Si el repositorio Git ya está inicializado, ejecutado en paso 1:
 
-# python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --git-commit
+### python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv / 
+### --yaml env/pro.yaml --ticket 86037 --git-commit
 
 
 
-## El script realizará:
-# Backup creado en  /opt/kafka/backup/
-# git switch -c acl/86037
-# git add .
-# git commit "86037 - Actualización ACLs Kafka"
-# python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --git-commit
+### El script realizará:
+
+### Backup creado en  /opt/kafka/backup/
+### git switch -c acl/86037
+### git add .
+### git commit "86037 - Actualización ACLs Kafka"
+### python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv /
+### --yaml env/pro.yaml --ticket 86037 --git-commit
 
 [root@lxtmbkafpro01 kafka-acls]# python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --git-commit
 [OK] Sintaxis YAML leída correctamente
@@ -423,12 +423,12 @@ After doing this, you may fix the identity used for this commit with:
 [OK] Commit generado: 8c72378cffd62bb8bed90843321ecdc4560b76d9
 [INFO] El script no hace push. Revise el commit antes de publicarlo.
 
-# Ejecutamos: git push --set-upstream origin acl/86037
+## Ejecutamos: git push --set-upstream origin acl/86037
 
 ## Paso 5. Verificar el cambio
 Buscar el principal:
 
-# grep -A20 "User:krb_api_gis\|User:krb_splunk" env/pro.yaml
+## grep -A20 "User:krb_api_gis\|User:krb_splunk" env/pro.yaml
     - name: User:KRB_ELK
     permissions:
       - topics:
@@ -480,21 +480,22 @@ Buscar el principal:
 
 ## Paso 6. Revisar el commit
 Ver qué ha cambiado:
-# git show
+### git show
 o
-# git diff main
+### git diff main
 
 
 ## Paso 8. Una vez aprobado
  Validar ACLs Kafka:
-# python3 tools/apply_acls.py env/pro.yaml --mode dry-run
+ 
+### python3 tools/apply_acls.py env/pro.yaml --mode dry-run
 
 Revisar resultado.
 
 ## Paso 9. Aplicación en Kafka
 Si el dry-run es correcto:
 
-# python3 tools/apply_acls.py env/pro.yaml --mode apply
+### python3 tools/apply_acls.py env/pro.yaml --mode apply
 
 Ejemplo con permisos de Cluster
 Petición:
@@ -533,7 +534,8 @@ Resultado:
       operations:
         - Describe
         - Write
-# Procedimiento recomendado para Producción
+## Procedimiento recomendado para Producción
+
 Para env/pro.yaml en los nodos KRaft de Producción:
 1. Crear CSV RFC
 2. import_csv_to_yaml.py --check-only
@@ -546,14 +548,14 @@ Para env/pro.yaml en los nodos KRaft de Producción:
 9. Export ACL final
 10. Evidencias
 
-### ROOLBACKS
+## ROOLBACKS
 
 El rollback debe contemplar dos Escenarios distintos:
 - Error al importar/modificar el YAML.
 - Error después de aplicar ACLs en Kafka.
 La documentación interna ya establece que Git es la fuente de verdad y aporta versionado, auditoría y rollback, mientras que Kafka no debe considerarse fuente de verdad.
 
-## Escenario 1. Error durante la importación del CSV
+### Escenario 1. Error durante la importación del CSV
 Este es el caso más sencillo.
 El script que te propuse genera previamente:
 
@@ -572,7 +574,7 @@ Revisar cambios:
 
 git diff
 
-## Escenario 2. Rollback antes del merge
+### Escenario 2. Rollback antes del merge
 Si ya tienes commit pero todavía no has hecho merge en main:
 Ver rama:
 
@@ -589,7 +591,7 @@ No afecta a Kafka porque todavía no se ha ejecutado:
 
 apply_acls.py
 
-## Escenario 3. Rollback después del merge
+### Escenario 3. Rollback después del merge
 Supongamos:
 
 Commit A
@@ -627,7 +629,7 @@ env/pro.yaml \
 
 Este es el rollback más limpio porque mantiene la trazabilidad Git.
 
-## Escenario 4. Error tras aplicar ACLs en Kafka
+### Escenario 4. Error tras aplicar ACLs en Kafka
 Éste es el importante para Producción.
 Por eso el procedimiento debe incluir siempre:
 Backup ACLs antes
@@ -638,7 +640,7 @@ Backup YAML antes
 
 cp env/pro.yaml backup/pro_antes_rfc123456.yaml
 
-# Rollback rápido en Kafka
+### Rollback rápido en Kafka
 Si una ACL nueva provoca:
 
 TOPIC_AUTHORIZATION_FAILED
@@ -653,7 +655,7 @@ y reaplicar:
 
 python3 tools/apply_acls.py env/pro.yaml --mode apply
 
-## Escenario 5. apply_acls.py sólo añade ACLs
+### Escenario 5. apply_acls.py sólo añade ACLs
 
 Hay un punto crítico.
 
@@ -689,13 +691,13 @@ Recomendación para PROD
 
 Documentar un procedimiento de tres niveles:
 
-# Nivel 1 (antes de tocar Kafka)
+### Nivel 1 (antes de tocar Kafka)
 
 git checkout -
 
 o restaurar backup YAML.
 
-# Nivel 2 (después de merge)
+### Nivel 2 (después de merge)
 
 git revert <sha>
 

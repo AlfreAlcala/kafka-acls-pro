@@ -59,9 +59,18 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, DescribeConfigs]
+          - name: t_networking_fw_checkpoint
+            patternType: literal
+            operations: [Describe, Read]
 
         consumerGroups:
           - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: splunk_pro
+            patternType: literal
+            operations: [Describe, Read]
+          - name: splunk_des
             patternType: literal
             operations: [Describe, Read]
 
@@ -479,3 +488,9 @@ principals:
           - name: connect-splunk_pro
             patternType: literal
             operations: [Describe, Read]
+  - name: User:krb_splunk
+    permissions:
+      - topics:
+          - name: t_networking_fw_checkpoint
+            patternType: literal
+            operations: [Describe, Write]

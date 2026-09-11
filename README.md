@@ -41,9 +41,9 @@ dev_networking_consumer*, networking_consumer*
 
 # Paso 1. Crear CSV. Ejemplo que parte de petición en Redmine
 Path en nodo lxtmbkafpro01: /root/kafka-acls
-## cd  /root/kafka-acls
-## git init
-## vi peticiones/103097.csv
+cd  /root/kafka-acls
+git init
+vi peticiones/103097.csv
 
 ## Contenido:
 
@@ -79,8 +79,8 @@ Principal existente
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
 
-### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv /
-### --yaml env/pro.yaml --ticket 103097 --check-only
+python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv /
+--yaml env/pro.yaml --ticket 103097 --check-only
 
 ## Salida esperada:
 
@@ -149,7 +149,7 @@ Resumen de importación:
 ## Paso 5. Verificar el cambio
 Buscar el principal:
 
-### grep -A20 "User:UT12453" env/pro.yaml
+grep -A20 "User:UT12453" env/pro.yaml
   - name: User:UT12453
     permissions:
       - topics:
@@ -171,7 +171,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-### grep -A20 "User:UT12881" env/pro.yaml
+grep -A20 "User:UT12881" env/pro.yaml
   - name: User:UT12881
     permissions:
       - topics:
@@ -193,7 +193,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-### grep -A20 "User:UT15038" env/pro.yaml
+grep -A20 "User:UT15038" env/pro.yaml
   - name: User:UT15038
     permissions:
       - topics:
@@ -215,7 +215,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-### grep -A20 "User:UM09446" env/pro.yaml
+grep -A20 "User:UM09446" env/pro.yaml
   - name: User:UM09446
     permissions:
       - topics:
@@ -237,7 +237,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-### grep -A20 "User:UM09524" env/pro.yaml
+grep -A20 "User:UM09524" env/pro.yaml
   - name: User:UM09524
     permissions:
       - topics:
@@ -259,7 +259,7 @@ Buscar el principal:
             operations: [Describe, Read]
       - consumerGroups:
           - name: dev_networking_consumer
-### grep -A20 "User:UT15839" env/pro.yaml
+grep -A20 "User:UT15839" env/pro.yaml
   - name: User:UT15839
     permissions:
       - topics:
@@ -276,22 +276,22 @@ Buscar el principal:
 
 ## Paso 6. Crear commit automáticamente.
 Si el repositorio Git ya está inicializado, lo inicializamos en el paso 1:
-### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv / 
-### --yaml env/pro.yaml --ticket 103097 --git-commit
+python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv / 
+--yaml env/pro.yaml --ticket 103097 --git-commit
 
 ## El script realizará:
-### git switch -c acl/103097
-### git add .
-### git commit "103097 - Actualización ACLs Kafka"
+git switch -c acl/103097
+git add .
+git commit "103097 - Actualización ACLs Kafka"
 
 ## Paso 7. Revisar el commit
 Ver qué ha cambiado:
-### git show
-### o
-### git diff main
+git show
+o
+git diff main
 
 ## Paso 8. Publicar rama
-### git push -u origin acl/103097
+git push -u origin acl/103097
 
 ## Paso 9. Una vez aprobado
  Validar ACLs Kafka:
@@ -302,8 +302,7 @@ Revisar resultado.
 ## Paso 10. Aplicación en Kafka
 
 Si el dry-run es correcto:
-
-### python3 tools/apply_acls.py env/pro.yaml --mode apply
+python3 tools/apply_acls.py env/pro.yaml --mode apply
 
 ## Caso práctico utilizando literal para aplicar a topic o consumergroup.
 
@@ -345,7 +344,7 @@ Principal existente, nuestro caso.
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
 
-### python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --check-only
+python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --check-only
 
 ### Salida esperada:
 
@@ -378,12 +377,12 @@ Si el repositorio Git ya está inicializado, ejecutado en paso 1:
 
 ### El script realizará:
 
-### Backup creado en  /opt/kafka/backup/
-### git switch -c acl/86037
-### git add .
-### git commit "86037 - Actualización ACLs Kafka"
-### python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv /
-### --yaml env/pro.yaml --ticket 86037 --git-commit
+Backup creado en  /opt/kafka/backup/
+git switch -c acl/86037
+git add .
+git commit "86037 - Actualización ACLs Kafka"
+python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv /
+--yaml env/pro.yaml --ticket 86037 --git-commit
 
 [root@lxtmbkafpro01 kafka-acls]# python3 tools/import_csv_to_yaml.py --csv peticiones/86037.csv --yaml env/pro.yaml --ticket 86037 --git-commit
 [OK] Sintaxis YAML leída correctamente
@@ -428,7 +427,7 @@ After doing this, you may fix the identity used for this commit with:
 ## Paso 5. Verificar el cambio
 Buscar el principal:
 
-## grep -A20 "User:krb_api_gis\|User:krb_splunk" env/pro.yaml
+grep -A20 "User:krb_api_gis\|User:krb_splunk" env/pro.yaml
     - name: User:KRB_ELK
     permissions:
       - topics:
@@ -480,9 +479,9 @@ Buscar el principal:
 
 ## Paso 6. Revisar el commit
 Ver qué ha cambiado:
-### git show
+git show
 o
-### git diff main
+git diff main
 
 
 ## Paso 8. Una vez aprobado

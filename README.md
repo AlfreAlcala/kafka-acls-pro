@@ -24,19 +24,17 @@ kafka-acls --bootstrap-server lxtmbkafdes01.xarxa.interna:9093 --command-config 
 Peticion → CSV → Commit → Push → Review → Deploy ACLs
 
 # Caso práctico utilizando patterns para varios topics o consumergroups.
-Supongamos una petición:
-
-103097
+Supongamos una petición:103097
 
 ## Principals:
 Users:UT12453, UT12881, UM09446, UT15839 
 
 ## Permisos:
 
-## Topic:
+### Topic:
 Topics con nombre t_networking_*
 
-## Consumer Groups:
+### Consumer Groups:
 dev_networking_consumer*, networking_consumer*
 
 # Paso 1. Crear CSV. Ejemplo que parte de petición en Redmine

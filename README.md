@@ -344,7 +344,13 @@ python3 tools/apply_acls.py env/pro.yaml --mode report
 ## apply
 
 Añade ACLs que faltan. Este es el comando que aplica permisos a Kafka. Aquí es conveniente antes realizar backup de los permisos en kafka:
- ### tools/export_current_acls.sh lxtmbkafdes01.xarxa.interna:9093 /etc/kafka/admin.properties > $BACKUP_DIR/acls_before.txt
+
+```bash
+
+ BACKUP_DIR=/opt/kafka_acl_backup/$(date +%Y%m%d_%H%M)
+ tools/export_current_acls.sh lxtmbkafdes01.xarxa.interna:9093 /etc/kafka/admin.properties > $BACKUP_DIR/acls_before.txt
+
+```
 
 ```bash
 

@@ -100,7 +100,7 @@ Ejecutar:
   [ADDED] User:UT15839 consumerGroup dev_networking_consumer (Describe|Read)
   [ADDED] User:UT15839 consumerGroup networking_consumer (Describe|Read)
   [OK] Check-only completado; no se ha modificado el YAML
-  
+    
 ## Paso 4. Aplicar cambios al YAML
 Cuando la revisión sea correcta:
 ### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097

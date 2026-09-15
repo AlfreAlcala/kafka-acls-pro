@@ -42,7 +42,6 @@ git init
 vi peticiones/103097.csv
 
 ## Contenido:
-
 ticket,principal,resourceType,name,patternType,operations
 103097,User:UT12453,topic,t_networking_,prefixed,Describe|Read
 103097,User:UT12453,consumerGroup,dev_networking_consumer,prefixed,Describe|Read
@@ -64,28 +63,24 @@ ticket,principal,resourceType,name,patternType,operations
 103097,User:UT15839,consumerGroup,networking_consumer,prefixed,Describe|Read
 
 ## Paso 2. Verificar el YAML actual
-
-grep -i "User:UT12453" env/pro.yaml
+ ### grep -i "User:UT12453" env/pro.yaml
 
 Si no devuelve nada:
 Principal nuevo
 Si devuelve resultados:
 Principal existente
-
 ## Paso 3. Validación previa (modo check)
 Ejecutar:
+### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097 --check-only
 
-python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv /
---yaml env/pro.yaml --ticket 103097 --check-only
+  ### Salida esperada:
 
-## Salida esperada:
-
-[OK] Sintaxis YAML leída correctamente
-[OK] Modelo YAML actual validado
-[OK] CSV validado: 18 petición/peticiones, ticket 103097
-[OK] Resultado en memoria validado
-
-Resumen de importación:
+ [OK] Sintaxis YAML leída correctamente       
+ [OK] Modelo YAML actual validado
+ [OK] CSV validado: 18 petición/peticiones, ticket 103097
+ [OK] Resultado en memoria validado
+ 
+ Resumen de importación:
   [ADDED] User:UT12453 topic t_networking_ (Describe|Read)
   [ADDED] User:UT12453 consumerGroup dev_networking_consumer (Describe|Read)
   [ADDED] User:UT12453 consumerGroup networking_consumer (Describe|Read)
@@ -104,9 +99,8 @@ Resumen de importación:
   [ADDED] User:UT15839 topic t_networking_ (Describe|Read)
   [ADDED] User:UT15839 consumerGroup dev_networking_consumer (Describe|Read)
   [ADDED] User:UT15839 consumerGroup networking_consumer (Describe|Read)
-
-[OK] Check-only completado; no se ha modificado el YAML
-
+  [OK] Check-only completado; no se ha modificado el YAML
+  
 ## Paso 4. Aplicar cambios al YAML
 Cuando la revisión sea correcta:
 ### python3 tools/import_csv_to_yaml.py --csv peticiones/103097.csv --yaml env/pro.yaml --ticket 103097

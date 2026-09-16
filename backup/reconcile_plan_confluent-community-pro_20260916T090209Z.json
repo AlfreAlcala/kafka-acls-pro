@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "20260916T090209Z",
+  "cluster": "confluent-community-pro",
+  "bootstrap": "lxtmbkafpro01.xarxa.interna:9093",
+  "mode": "reconcile",
+  "add": [],
+  "remove": [
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "*",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "*",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:UT17120",
+      "resource_type": "TOPIC",
+      "resource_name": "*",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:UT17120",
+      "resource_type": "TOPIC",
+      "resource_name": "*",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    }
+  ],
+  "blocked": []
+}

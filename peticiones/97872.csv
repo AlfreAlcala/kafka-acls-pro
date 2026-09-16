@@ -1,0 +1,15 @@
+ticket,principal,resourceType,name,patternType,operations
+97872,User:KRB_APIGIS,topic,m_inp,prefixed,Describe|Read|Write
+97872,User:KRB_INP,topic,m_inp,prefixed,Describe|Read|Write
+97872,User:KRB_APIGIS,consumerGroup,broker_consumer,prefixed,Describe|Read
+97872,User:KRB_INP,consumerGroup,broker_consumer,prefixed,Describe|Read
+97872,User:KRB_APIGIS,consumerGroup,dev_consumer,prefixed,Describe|Read
+97872,User:KRB_INP,consumerGroup,dev_consumer,prefixed,Describe|Read
+97872,User:KRB_APIGIS,consumerGroup,inp_,prefixed,Describe|Read
+97872,User:KRB_INP,consumerGroup,inp_,prefixed,Describe|Read
+97872,User:upe02595,topic,m_inp,prefixed,Describe|Read|Write
+97872,User:krb_inp,topic,m_inp,prefixed,Describe|Read|Write
+97872,User:krb_inp,consumerGroup,broker_consumer,prefixed,Describe|Read
+97872,User:krb_inp,consumerGroup,dev_consumer,prefixed,Describe|Read
+97872,User:krb_inp,consumerGroup,inp_,prefixed,Describe|Read
+

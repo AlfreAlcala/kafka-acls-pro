@@ -1,0 +1,5 @@
+ticket,principal,resourceType,name,patternType,operations
+86037,User:krb_apigis,topic,t_networking_fw_checkpoint,literal,Describe|Read
+86037,User:krb_splunk,topic,t_networking_fw_checkpoint,literal,Describe|Write
+86037,User:krb_apigis,consumerGroup,splunk_pro,literal,Describe|Read
+86037,User:krb_apigis,consumerGroup,splunk_des,literal,Describe|Read

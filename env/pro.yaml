@@ -111,9 +111,21 @@ principals:
               - Read
               - Write
 
+          - name: m_inp
+            patternType: prefixed
+            operations: [Describe, Read, Write]
         consumerGroups:
           - name: '*'
             patternType: literal
+            operations: [Describe, Read]
+          - name: broker_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: dev_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: inp_
+            patternType: prefixed
             operations: [Describe, Read]
 
   - name: User:krb_mon
@@ -221,6 +233,9 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, Read]
+          - name: m_inp
+            patternType: prefixed
+            operations: [Describe, Read, Write]
 
   - name: User:UT17120
     permissions:
@@ -494,3 +509,19 @@ principals:
           - name: t_networking_fw_checkpoint
             patternType: literal
             operations: [Describe, Write]
+  - name: User:KRB_APIGIS
+    permissions:
+      - topics:
+          - name: m_inp
+            patternType: prefixed
+            operations: [Describe, Read, Write]
+      - consumerGroups:
+          - name: broker_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: dev_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: inp_
+            patternType: prefixed
+            operations: [Describe, Read]

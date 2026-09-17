@@ -469,12 +469,18 @@ principals:
           - name: bus_mobile_charge
             patternType: literal
             operations: [Describe, Read, Write]
+          - name: __consumer_offsets
+            patternType: literal
+            operations: [Describe, Read]
       - consumerGroups:
           - name: broker_consumer
             patternType: prefixed
             operations: [Describe, Read]
           - name: dev_consumer
             patternType: prefixed
+            operations: [Describe, Read]
+          - name: cmak-kcorp
+            patternType: literal
             operations: [Describe, Read]
   - name: User:KRB_SAP
     permissions:

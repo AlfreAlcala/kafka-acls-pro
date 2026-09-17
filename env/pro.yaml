@@ -444,3 +444,22 @@ principals:
           - name: networking_consumer
             patternType: prefixed
             operations: [Describe, Read]
+  - name: User:KRB_FABRIC
+    permissions:
+      - topics:
+          - name: metro_alarmes_tren
+            patternType: literal
+            operations: [Describe, Read]
+          - name: raw_smart_motors
+            patternType: literal
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: kafka-fabric-bridge-dev
+            patternType: literal
+            operations: [Describe, Read]
+          - name: kafka-fabric-bridge-int
+            patternType: literal
+            operations: [Describe, Read]
+          - name: kafka-fabric-bridge-pro
+            patternType: literal
+            operations: [Describe, Read]

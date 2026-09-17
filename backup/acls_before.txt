@@ -1,0 +1,453 @@
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_eventlogs, patternType=LITERAL)`:
+	(principal=User:KRB_ELK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_EVENTLOG, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_fw_paloalto, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=mm2-configs., patternType=PREFIXED)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_ise, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_casb, patternType=LITERAL)`:
+	(principal=User:KRB_TEST, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_TEST, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=connect-splunk_des, patternType=LITERAL)`:
+	(principal=User:KRB_TEST, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_TEST, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_pam_thycotic, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=raw_monitoring_sorted, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=grca_des, patternType=LITERAL)`:
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=broker_consumer, patternType=PREFIXED)`:
+	(principal=User:KRB_SAP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_SAP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=kafka-fabric-bridge-int, patternType=LITERAL)`:
+	(principal=User:KRB_FABRIC, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=dev_consumer, patternType=PREFIXED)`:
+	(principal=User:KRB_SAP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_SAP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=mm2-offsets., patternType=PREFIXED)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=dev_networking_consumer, patternType=PREFIXED)`:
+	(principal=User:UT15839, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15839, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=smoke-test, patternType=LITERAL)`:
+	(principal=User:uadenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=inp_, patternType=PREFIXED)`:
+	(principal=User:KRB_APIGIS, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=raw_smart_motors, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TRANSACTIONAL_ID, name=*, patternType=LITERAL)`:
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_syslogs, patternType=LITERAL)`:
+	(principal=User:KRB_SYSLOG, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=splunk_des, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=k8s_validacions_pro, patternType=LITERAL)`:
+	(principal=User:krb_telecom_ticket, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_telecom_ticket, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=mm2-offset-syncs., patternType=PREFIXED)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp_logs, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_, patternType=PREFIXED)`:
+	(principal=User:UT15839, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15839, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=bus_wifitracking, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=mm2-status., patternType=PREFIXED)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp_alive, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=confluent-mm2, patternType=LITERAL)`:
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=bus_cpa, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=metro_validacions, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_telecom_ticket, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_telecom_ticket, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_umbrella, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=grca_prod, patternType=LITERAL)`:
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=bus_mobile_charge, patternType=LITERAL)`:
+	(principal=User:KRB_SAP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:KRB_SAP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_beacon_localitzacions_SOS, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=grca_pro, patternType=LITERAL)`:
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=cloudera-mm2, patternType=LITERAL)`:
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=INP, patternType=PREFIXED)`:
+	(principal=User:KRB_INP, host=*, operation=DELETE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=ALTER, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=ALTER_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=CREATE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=heartbeats, patternType=LITERAL)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_networking_fw_checkpoint, patternType=LITERAL)`:
+	(principal=User:krb_splunk, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_splunk, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=metro_alarmes_tren, patternType=LITERAL)`:
+	(principal=User:KRB_FABRIC, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=*, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_EVENTLOG, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_SYSLOG, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SYSLOG, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_EVENTLOG, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=grca_int, patternType=LITERAL)`:
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=networking_consumer, patternType=PREFIXED)`:
+	(principal=User:UT15839, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09446, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12881, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT12453, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15839, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UM09524, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT15038, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=metro_passatger, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp_stream_logs, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=grca_local1, patternType=LITERAL)`:
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=CLUSTER, name=kafka-cluster, patternType=LITERAL)`:
+	(principal=User:akhq, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:kafka;User:kafka/lxtmbkafpro01.xarxa.interna@XARXA.INTERNA;User:kafka/lxtmbkafpro02.xarxa.interna@XARXA.INTERNA;User:kafka/lxtmbkafpro03.xarxa.interna@XARXA.INTERNA;User:kafka/lxtmbkafpro04.xarxa.interna@XARXA.INTERNA;User:upe02595;User:mmk_conf_dev;User:bigdata_backup, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=ALTER_CONFIGS, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:kafka, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=IDEMPOTENT_WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=CLUSTER_ACTION, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=connect-splunk_pro, patternType=LITERAL)`:
+	(principal=User:KRB_TEST, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_SPLUNK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_TEST, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_ELK, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=bus_validacions, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=t_monitoritzacio_metriques, patternType=LITERAL)`:
+	(principal=User:krb_mon, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_mon, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:krb_mon, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=splunk_pro, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp, patternType=PREFIXED)`:
+	(principal=User:KRB_APIGIS, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:upe02595, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:upe02595, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:KRB_APIGIS, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:upe02595, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=metro_tren, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=nifi-dev_landing_kafka_pro, patternType=LITERAL)`:
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=cloudera.heartbeats, patternType=LITERAL)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=ALTER_CONFIGS, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=cloudera.checkpoints, patternType=PREFIXED)`:
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=ALTER_CONFIGS, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_beacon_localitzacions_events, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uagrca, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=*, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT14569, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:UT13995, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read@XARXA.INTERNA, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=CREATE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:upe02595, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT16530, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UM06008, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:upe02595, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_mon, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:uaDenodo_read@XARXA.INTERNA, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:UT17120, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:UM09467, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:akhq, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=ALTER_CONFIGS, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:uadenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT15556, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:krb_mon, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:mmk_conf_pro, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:UT17127, host=*, operation=ALL, permissionType=ALLOW)
+	(principal=User:uaDenodo_read, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=m_inp_config, patternType=LITERAL)`:
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE_CONFIGS, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_INP, host=*, operation=WRITE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=kafka-fabric-bridge-dev, patternType=LITERAL)`:
+	(principal=User:KRB_FABRIC, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=DESCRIBE, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=TOPIC, name=metro_vies, patternType=LITERAL)`:
+	(principal=User:krb_apigis, host=*, operation=WRITE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:nifi-dev, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=DESCRIBE, permissionType=ALLOW)
+	(principal=User:krb_apigis, host=*, operation=READ, permissionType=ALLOW)
+
+Current ACLs for resource `ResourcePattern(resourceType=GROUP, name=kafka-fabric-bridge-pro, patternType=LITERAL)`:
+	(principal=User:KRB_FABRIC, host=*, operation=READ, permissionType=ALLOW)
+	(principal=User:KRB_FABRIC, host=*, operation=DESCRIBE, permissionType=ALLOW)
+

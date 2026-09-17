@@ -1,0 +1,3 @@
+ticket,principal,resourceType,name,patternType,operations
+51382,User:KRB_APIGIS,topic,__consumer_offsets,literal,Describe|Read
+51382,User:KRB_APIGIS,consumerGroup,cmak-kcorp,literal,Describe|Read

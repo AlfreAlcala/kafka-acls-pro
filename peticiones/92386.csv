@@ -1,0 +1,10 @@
+ticket,principal,resourceType,name,patternType,operations
+92386,User:KRB_ELK,topic,t_networking_casb,literal,Describe|Read
+92386,User:KRB_TEST,topic,t_networking_casb,literal,Describe|Read
+92386,User:KRB_SPLUNK,topic,t_networking_casb,literal,Describe|Read
+92386,User:KRB_ELK,consumerGroup,connect-splunk_des,literal,Describe|Read
+92386,User:KRB_TEST,consumerGroup,connect-splunk_des,literal,Describe|Read
+92386,User:KRB_SPLUNK,consumerGroup,connect-splunk_des,literal,Describe|Read
+92386,User:KRB_ELK,consumerGroup,connect-splunk_pro,literal,Describe|Read
+92386,User:KRB_TEST,consumerGroup,connect-splunk_pro,literal,Describe|Read
+92386,User:KRB_SPLUNK,consumerGroup,connect-splunk_pro,literal,Describe|Read

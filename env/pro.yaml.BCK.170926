@@ -1,0 +1,446 @@
+cluster:
+  name: confluent-community-pro
+  bootstrap: lxtmbkafpro01.xarxa.interna:9093
+  command_config: /etc/kafka/admin.properties
+  dry_run: false
+  source: Ranger export May 20, 2026 09:58:25 from lxbigdata23 (service cm_kafka)
+
+principals:
+  - name: User:krb_apigis
+    permissions:
+      - topics:
+          - name: bus_cpa
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: bus_validacions
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: bus_wifitracking
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: m_beacon_localitzacions_SOS
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: m_beacon_localitzacions_events
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: metro_passatger
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: metro_tren
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: metro_validacions
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: metro_vies
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: raw_monitoring_sorted
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: raw_smart_motors
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: t_networking_fw_paloalto
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: t_networking_ise
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: t_networking_pam_thycotic
+            patternType: literal
+            operations: [Describe, Read, Write]
+          - name: t_networking_umbrella
+            patternType: literal
+            operations: [Describe, Read, Write]
+
+          # (venía del bloque User:krb_apigis)
+          - name: '*'
+            patternType: literal
+            operations: [Describe, DescribeConfigs]
+
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:KRB_INP
+    permissions:
+      - topics:
+          # (venía del bloque User:krb_inp)
+          - name: '*'
+            patternType: literal
+            operations: [Describe, DescribeConfigs]
+
+          # (venía del bloque User:KRB_INP)
+          - name: m_inp
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read, Write]
+          - name: m_inp_alive
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read, Write]
+          - name: m_inp_config
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read, Write]
+          - name: m_inp_logs
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read, Write]
+          - name: m_inp_stream_logs
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read, Write]
+
+          - name: INP
+            patternType: prefixed
+            operations:
+              - Alter
+              - AlterConfigs
+              - Create
+              - Delete
+              - Describe
+              - DescribeConfigs
+              - Read
+              - Write
+
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:krb_mon
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: t_monitoritzacio_metriques
+            patternType: literal
+            operations: [Describe, Read, Write]
+
+  - name: User:krb_telecom_ticket
+    permissions:
+      - topics:
+          - name: metro_validacions
+            patternType: literal
+            operations: [Describe, Read]
+        consumerGroups:
+          - name: k8s_validacions_pro
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:nifi-dev
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: bus_cpa
+            patternType: literal
+            operations: [Describe, Read]
+          - name: bus_wifitracking
+            patternType: literal
+            operations: [Describe, Read]
+          - name: m_beacon_localitzacions_events
+            patternType: literal
+            operations: [Describe, Read]
+          - name: metro_passatger
+            patternType: literal
+            operations: [Describe, Read]
+          - name: metro_tren
+            patternType: literal
+            operations: [Describe, Read]
+          - name: metro_vies
+            patternType: literal
+            operations: [Describe, Read]
+          - name: raw_monitoring_sorted
+            patternType: literal
+            operations: [Describe, Read]
+          - name: raw_smart_motors
+            patternType: literal
+            operations: [Describe, Read]
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: nifi-dev_landing_kafka_pro
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:uaDenodo_read
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: 'smoke-test'
+            patternType: literal
+            operations: [Describe, Read]
+          - name: bus_cpa
+            patternType: literal
+            operations: [Describe, Read]
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:uagrca
+    permissions:
+      - topics:
+          - name: m_beacon_localitzacions_events
+            patternType: literal
+            operations: [Describe, Read]
+        consumerGroups:
+          - name: grca_des
+            patternType: literal
+            operations: [Describe, Read]
+          - name: grca_int
+            patternType: literal
+            operations: [Describe, Read]
+          - name: grca_local1
+            patternType: literal
+            operations: [Describe, Read]
+          - name: grca_pro
+            patternType: literal
+            operations: [Describe, Read]
+          - name: grca_prod
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:upe02595
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:UT17120
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+  - name: User:mmk_conf_pro
+    permissions:
+      - topics:
+          - name: mm2-offsets.
+            patternType: prefixed
+            operations: [Create, Write, Read, Describe, DescribeConfigs]
+          - name: mm2-configs.
+            patternType: prefixed
+            operations: [Create, Write, Read, Describe, DescribeConfigs]
+          - name: mm2-status.
+            patternType: prefixed
+            operations: [Create, Write, Read, Describe, DescribeConfigs]
+          - name: mm2-offset-syncs.
+            patternType: prefixed
+            operations: [Create, Write, Read, Describe, DescribeConfigs]
+
+          - name: heartbeats
+            patternType: literal
+            operations: [Create, Write, Read, Describe, DescribeConfigs]
+
+          - name: cloudera.heartbeats
+            patternType: literal
+            operations: [Create, Write, Read, Describe, DescribeConfigs, AlterConfigs]
+
+          - name: cloudera.checkpoints
+            patternType: prefixed
+            operations: [Create, Write, Read, Describe, DescribeConfigs, AlterConfigs]
+
+          - name: '*'
+            patternType: literal
+            operations: [Create, Write, Read, Describe, DescribeConfigs, AlterConfigs]
+
+        consumerGroups:
+          - name: cloudera-mm2
+            patternType: literal
+            operations: [Read, Describe]
+
+          - name: confluent-mm2
+            patternType: literal
+            operations: [Read, Describe]
+
+      - clusters:
+          - name: kafka-cluster
+            operations: [IdempotentWrite, ClusterAction, Describe, DescribeConfigs, AlterConfigs]
+
+      - transactionalIds:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Write]
+
+  - name: User:akhq
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, DescribeConfigs, Read]
+
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+      - clusters:
+          - name: kafka-cluster
+            operations: [Describe, DescribeConfigs]
+
+  - name: User:KRB_ELK
+    permissions:
+      - topics:
+          - name: t_syslogs
+            patternType: literal
+            operations: [Describe, Read]
+          - name: t_eventlogs
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:KRB_SYSLOG
+    permissions:
+      - topics:
+          - name: t_syslogs
+            patternType: literal
+            operations: [All]
+
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+  - name: User:KRB_EVENTLOG
+    permissions:
+      - topics:
+          - name: t_eventlogs
+            patternType: literal
+            operations: [All]
+        consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
+
+  - name: User:UT17127
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UT16530
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UT15556
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UM09467
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UM06008
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UT14569
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UT13995
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [All]
+
+  - name: User:UT12453
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT12881
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15038
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09446
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UM09524
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:UT15839
+    permissions:
+      - topics:
+          - name: t_networking_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: dev_networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: networking_consumer
+            patternType: prefixed
+            operations: [Describe, Read]

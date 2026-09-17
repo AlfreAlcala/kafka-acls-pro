@@ -1,0 +1,165 @@
+Procedimiento Operativo ACLs-as-Code (sin Pull Request)
+Flujo de trabajo
+RFC / Ticket ↓ CSV ↓ Check Only ↓ Import + Commit ↓ Revisión ↓ Push ↓ Merge a main ↓ Backup ACL actual ↓ Dry Run ↓ Apply ↓ Evidencias
+
+─────────────────────────────────────────────
+
+Paso 0. Preparación
+cd /root/kafka-acls
+git rev-parse --is-inside-work-tree
+
+Debe devolver:true
+Verificar acceso al repositorio:
+
+git fetch origin # No debe mostrar nada, esto es pq origin/main=main local, CORRECTO. Si hay cambios lo indicara la salida.
+
+─────────────────────────────────────────────
+
+Paso 1. Crear rama RFC
+
+git switch -c acl/134819
+
+Verificar:
+
+git branch
+
+─────────────────────────────────────────────
+
+Paso 2. Validación previa
+
+python3 tools/import_csv_to_yaml.py \
+--csv peticiones/134819.csv \
+--yaml env/pro.yaml \
+--ticket 134819 \
+--check-only
+
+Validar que la salida es correcta.
+No modifica ningún fichero.
+
+─────────────────────────────────────────────
+
+Paso 3. Actualizar YAML y generar commit
+
+
+python3 tools/import_csv_to_yaml.py \
+--csv peticiones/134819.csv \
+--yaml env/pro.yaml \
+--ticket 134819 \
+--git-commit
+
+
+El script:
+
+Crea backup.
+Actualiza YAML.
+Ejecuta git add.
+Ejecuta git commit.
+
+─────────────────────────────────────────────
+
+Paso 4. Revisar cambios
+
+grep -A20 "User:KRB_FABRIC" env/pro.yaml
+git show
+git diff main
+
+Verificar:
+git status
+
+Debe indicar:
+working tree clean
+
+─────────────────────────────────────────────
+
+Paso 5. Publicar rama
+
+git push --set-upstream origin acl/134819
+
+Verificar:
+
+git branch -vv
+
+─────────────────────────────────────────────
+
+Paso 6. Merge a main
+
+Cambiar a main:
+git checkout main
+
+Actualizar referencias remotas:
+
+git fetch origin
+
+Merge local:
+
+git merge --no-ff acl/134819
+
+Verificar:
+
+git log --oneline --graph -10
+
+Publicar main:
+
+git push origin main
+
+
+En este punto:
+
+main local= origin/main
+
+por lo que NO es necesario:
+
+git pull origin main
+
+─────────────────────────────────────────────
+
+Paso 7. Backup ACL actual
+
+
+mkdir -p backup
+
+
+Exportar ACLs:
+
+tools/export_current_acls.sh lxtmbkafpro01.xarxa.interna:9093 /etc/kafka/admin.properties > backup/acls_before.txt
+
+─────────────────────────────────────────────
+
+Paso 8. Dry Run
+
+python3 tools/apply_acls.py env/pro.yaml --mode report
+
+Revisar cuidadosamente la salida.
+No continuar si aparecen errores.
+
+─────────────────────────────────────────────
+
+Paso 9. Aplicar ACLs
+
+python3 tools/apply_acls.py env/pro.yaml --mode apply --execute
+
+Verificar que no aparecen errores.
+
+─────────────────────────────────────────────
+
+Paso 10. Evidencias
+
+Exportar ACL final:
+
+tools/export_current_acls.sh lxtmbkafpro01.xarxa.interna:9093 /etc/kafka/admin.properties > backup/acls_after.txt
+
+Comparar:
+
+diff backup/acls_before.txt backup/acls_after.txt
+
+Guardar:
+
+RFC original.
+CSV.
+Commit SHA.
+Backup ACL antes.
+Backup ACL después.
+Evidencias de aplicación.
+
+─────────────────────────────────────────────
+

@@ -1,0 +1,7 @@
+ticket,principal,resourceType,name,patternType,operations
+108216,User:KRB_APIGIS,topic,bus_mobile_charge,literal,Describe|Read|Write
+108216,User:KRB_SAP,topic,bus_mobile_charge,literal,Describe|Read
+108216,User:KRB_SAP,consumerGroup,broker_consumer,prefixed,Describe|Read
+108216,User:KRB_SAP,consumerGroup,dev_consumer,prefixed,Describe|Read
+108216,User:KRB_APIGIS,consumerGroup,broker_consumer,prefixed,Describe|Read
+108216,User:KRB_APIGIS,consumerGroup,dev_consumer,prefixed,Describe|Read

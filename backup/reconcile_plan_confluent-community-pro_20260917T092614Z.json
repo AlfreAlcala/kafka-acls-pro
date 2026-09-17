@@ -1,0 +1,100 @@
+{
+  "timestamp_utc": "20260917T092614Z",
+  "cluster": "confluent-community-pro",
+  "bootstrap": "lxtmbkafpro01.xarxa.interna:9093",
+  "mode": "apply",
+  "add": [
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-dev",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-dev",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-int",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-int",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-pro",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "GROUP",
+      "resource_name": "kafka-fabric-bridge-pro",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "TOPIC",
+      "resource_name": "metro_alarmes_tren",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "TOPIC",
+      "resource_name": "metro_alarmes_tren",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "TOPIC",
+      "resource_name": "raw_smart_motors",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_FABRIC",
+      "resource_type": "TOPIC",
+      "resource_name": "raw_smart_motors",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    }
+  ],
+  "remove": [],
+  "blocked": []
+}

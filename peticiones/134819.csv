@@ -1,0 +1,6 @@
+ticket,principal,resourceType,name,patternType,operations
+134819,User:KRB_FABRIC,topic,metro_alarmes_tren,literal,Describe|Read
+134819,User:KRB_FABRIC,topic,raw_smart_motors,literal,Describe|Read
+134819,User:KRB_FABRIC,consumerGroup,kafka-fabric-bridge-dev,literal,Describe|Read
+134819,User:KRB_FABRIC,consumerGroup,kafka-fabric-bridge-int,literal,Describe|Read
+134819,User:KRB_FABRIC,consumerGroup,kafka-fabric-bridge-pro,literal,Describe|Read

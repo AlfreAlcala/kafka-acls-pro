@@ -1,0 +1,28 @@
+cd /root/kafka-acls
+git rev-parse --is-inside-work-tree - Debe dar True
+git switch -c acl/134819 - Crea Rama
+git branch
+
+Paso 1 mode check:
+python3 tools/import_csv_to_yaml.py --csv peticiones/134819.csv --yaml env/pro.yaml --ticket 134819 --check-only
+
+Paso 3. Crear commit automáticamente
+python3 tools/import_csv_to_yaml.py --csv peticiones/134819.csv --yaml env/pro.yaml --ticket 134819 --git-commit
+
+Paso 4: Verificar el cambio
+grep -A20 "User:KRB_FABRIC" env/pro.yaml
+git show
+git diff main
+
+Paso 5: Publicar rama
+git push --set-upstream origin acl/134819
+
+Paso 6: 
+python3 tools/apply_acls.py env/pro.yaml --mode apply --report
+python3 tools/apply_acls.py env/pro.yaml --mode apply --execute
+python3 tools/apply_acls.py env/pro.yaml --mode apply --report
+
+Paso 7:
+Seleccionammos rama main local y la actualizamos con pull
+git checkout main
+git pull origin main

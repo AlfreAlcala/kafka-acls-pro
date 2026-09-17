@@ -463,3 +463,29 @@ principals:
           - name: kafka-fabric-bridge-pro
             patternType: literal
             operations: [Describe, Read]
+  - name: User:KRB_APIGIS
+    permissions:
+      - topics:
+          - name: bus_mobile_charge
+            patternType: literal
+            operations: [Describe, Read, Write]
+      - consumerGroups:
+          - name: broker_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: dev_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:KRB_SAP
+    permissions:
+      - topics:
+          - name: bus_mobile_charge
+            patternType: literal
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: broker_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+          - name: dev_consumer
+            patternType: prefixed
+            operations: [Describe, Read]

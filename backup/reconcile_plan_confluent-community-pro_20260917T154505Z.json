@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "20260917T154505Z",
+  "cluster": "confluent-community-pro",
+  "bootstrap": "lxtmbkafpro01.xarxa.interna:9093",
+  "mode": "apply",
+  "add": [
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "GROUP",
+      "resource_name": "cmak-kcorp",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "GROUP",
+      "resource_name": "cmak-kcorp",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "TOPIC",
+      "resource_name": "__consumer_offsets",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "TOPIC",
+      "resource_name": "__consumer_offsets",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    }
+  ],
+  "remove": [],
+  "blocked": []
+}

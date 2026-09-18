@@ -1,0 +1,271 @@
+{
+  "timestamp_utc": "20260917T154737Z",
+  "cluster": "confluent-community-pro",
+  "bootstrap": "lxtmbkafpro01.xarxa.interna:9093",
+  "mode": "reconcile",
+  "add": [],
+  "remove": [
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "GROUP",
+      "resource_name": "inp_",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "GROUP",
+      "resource_name": "inp_",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_APIGIS",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Write",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "connect-splunk_des",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "connect-splunk_des",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "connect-splunk_pro",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "GROUP",
+      "resource_name": "connect-splunk_pro",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "TOPIC",
+      "resource_name": "t_networking_casb",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_ELK",
+      "resource_type": "TOPIC",
+      "resource_name": "t_networking_casb",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "broker_consumer",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "broker_consumer",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "dev_consumer",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "dev_consumer",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "inp_",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "GROUP",
+      "resource_name": "inp_",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:KRB_INP",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Write",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "GROUP",
+      "resource_name": "splunk_des",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "GROUP",
+      "resource_name": "splunk_des",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "GROUP",
+      "resource_name": "splunk_pro",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "GROUP",
+      "resource_name": "splunk_pro",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "TOPIC",
+      "resource_name": "t_networking_fw_checkpoint",
+      "pattern_type": "literal",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:krb_apigis",
+      "resource_type": "TOPIC",
+      "resource_name": "t_networking_fw_checkpoint",
+      "pattern_type": "literal",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:upe02595",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Describe",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:upe02595",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Read",
+      "permission_type": "ALLOW",
+      "host": "*"
+    },
+    {
+      "principal": "User:upe02595",
+      "resource_type": "TOPIC",
+      "resource_name": "m_inp",
+      "pattern_type": "prefixed",
+      "operation": "Write",
+      "permission_type": "ALLOW",
+      "host": "*"
+    }
+  ],
+  "blocked": []
+}

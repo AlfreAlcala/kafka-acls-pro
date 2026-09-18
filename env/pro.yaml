@@ -116,6 +116,9 @@ principals:
           - name: t_monitoritzacio_metriques
             patternType: literal
             operations: [Describe, Read, Write]
+          - name: t_monitoritzacio_controlup
+            patternType: literal
+            operations: [Describe, Read, Write]
 
   - name: User:krb_telecom_ticket
     permissions:
@@ -472,6 +475,9 @@ principals:
           - name: __consumer_offsets
             patternType: literal
             operations: [Describe, Read]
+          - name: t_monitoritzacio_controlup
+            patternType: literal
+            operations: [Describe, Read, Write]
       - consumerGroups:
           - name: broker_consumer
             patternType: prefixed
@@ -493,5 +499,15 @@ principals:
             patternType: prefixed
             operations: [Describe, Read]
           - name: dev_consumer
+            patternType: prefixed
+            operations: [Describe, Read]
+  - name: User:krb_splunk
+    permissions:
+      - topics:
+          - name: t_
+            patternType: prefixed
+            operations: [Describe, Read]
+      - consumerGroups:
+          - name: connect-splunk
             patternType: prefixed
             operations: [Describe, Read]

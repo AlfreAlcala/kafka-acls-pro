@@ -262,6 +262,9 @@ principals:
           - name: confluent-mm2
             patternType: literal
             operations: [Read, Describe]
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
 
       - clusters:
           - name: kafka-cluster

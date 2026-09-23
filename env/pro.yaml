@@ -64,6 +64,9 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, Read]
+          - name: cmak-kcorp
+            patternType: literal
+            operations: [Describe, Read]
 
   - name: User:KRB_INP
     permissions:

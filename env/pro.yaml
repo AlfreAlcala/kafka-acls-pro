@@ -517,3 +517,9 @@ principals:
           - name: connect-splunk
             patternType: prefixed
             operations: [Describe, Read]
+  - name: User:KRB_TELECOM_TICKET
+    permissions:
+      - topics:
+          - name: metro_validacions
+            patternType: literal
+            operations: [Describe, Read, Write]

@@ -303,7 +303,14 @@ principals:
           - name: t_eventlogs
             patternType: literal
             operations: [Describe, Read]
+          - name: t_monitoritzacio_metriques
+            patternType: literal
+            operations: [Describe, Read, DescribeConfigs]
 
+      - consumerGroups:
+          - name: connect-elk-dev
+            patternType: literal
+            operations: [Describe, Read]
   - name: User:KRB_SYSLOG
     permissions:
       - topics:

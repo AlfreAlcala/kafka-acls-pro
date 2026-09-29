@@ -484,6 +484,9 @@ principals:
           - name: t_monitoritzacio_controlup
             patternType: literal
             operations: [Describe, Read, Write]
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read, Write, DescribeConfigs]
       - consumerGroups:
           - name: broker_consumer
             patternType: prefixed
@@ -492,6 +495,9 @@ principals:
             patternType: prefixed
             operations: [Describe, Read]
           - name: cmak-kcorp
+            patternType: literal
+            operations: [Describe, Read]
+          - name: '*'
             patternType: literal
             operations: [Describe, Read]
   - name: User:KRB_SAP

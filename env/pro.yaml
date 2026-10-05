@@ -122,7 +122,14 @@ principals:
           - name: t_monitoritzacio_controlup
             patternType: literal
             operations: [Describe, Read, Write]
+          - name: b_sae_fitxer_log
+            patternType: literal
+            operations: [Describe, Read, Write]
 
+      - consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]
   - name: User:krb_telecom_ticket
     permissions:
       - topics:

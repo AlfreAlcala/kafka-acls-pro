@@ -543,3 +543,13 @@ principals:
           - name: metro_validacions
             patternType: literal
             operations: [Describe, Read, Write]
+  - name: User:krb_sae
+    permissions:
+      - topics:
+          - name: b_sae_fitxer_log
+            patternType: literal
+            operations: [Describe, Read, Write]
+      - consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]

@@ -553,3 +553,13 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, Read]
+  - name: User:KRB_MON
+    permissions:
+      - topics:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read, Write]
+      - consumerGroups:
+          - name: '*'
+            patternType: literal
+            operations: [Describe, Read]

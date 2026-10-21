@@ -533,9 +533,15 @@ principals:
           - name: t_
             patternType: prefixed
             operations: [Describe, Read]
+          - name: b_sae_fitxer_log
+            patternType: literal
+            operations: [Describe, Read]
       - consumerGroups:
           - name: connect-splunk
             patternType: prefixed
+            operations: [Describe, Read]
+          - name: logstash-lxsplunk05-kafka
+            patternType: literal
             operations: [Describe, Read]
   - name: User:KRB_TELECOM_TICKET
     permissions:

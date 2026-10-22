@@ -504,6 +504,9 @@ principals:
           - name: t_storage_cybervr
             patternType: literal
             operations: [Write, Describe, Read, DescribeConfigs]
+          - name: t_storage_alarms
+            patternType: literal
+            operations: [Write, Describe, Read, DescribeConfigs]
       - consumerGroups:
           - name: broker_consumer
             patternType: prefixed
@@ -540,6 +543,9 @@ principals:
             patternType: literal
             operations: [Describe, Read]
           - name: t_storage_cybervr
+            patternType: literal
+            operations: [Describe, Read, DescribeConfigs]
+          - name: t_storage_alarms
             patternType: literal
             operations: [Describe, Read, DescribeConfigs]
       - consumerGroups:

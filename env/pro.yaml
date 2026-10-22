@@ -501,6 +501,9 @@ principals:
           - name: '*'
             patternType: literal
             operations: [Describe, Read, Write, DescribeConfigs]
+          - name: t_storage_cybervr
+            patternType: literal
+            operations: [Write, Describe, Read, DescribeConfigs]
       - consumerGroups:
           - name: broker_consumer
             patternType: prefixed
@@ -536,6 +539,9 @@ principals:
           - name: b_sae_fitxer_log
             patternType: literal
             operations: [Describe, Read]
+          - name: t_storage_cybervr
+            patternType: literal
+            operations: [Describe, Read, DescribeConfigs]
       - consumerGroups:
           - name: connect-splunk
             patternType: prefixed
